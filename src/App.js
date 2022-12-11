@@ -33,16 +33,13 @@ class App extends React.Component {
       <Switch>
         {/*defining paths to card editor and card viewer*/}
         <Route exact path="/editor">
-          <CardEditor
-            addCard={this.addCard}
-            cards={this.state.cards}
-            deleteCard={this.deleteCard}
-          />
+          <CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard}/>
         </Route>
-
+        
         <Route exact path="/viewer">
           <CardViewer cards={this.state.cards} />
         </Route>
+        
 
       </Switch>
       
