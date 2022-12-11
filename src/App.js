@@ -3,6 +3,7 @@ import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
 
 import { Switch, Route } from 'react-router-dom';
+import { Router } from 'react-router';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,8 +31,31 @@ class App extends React.Component {
   render() {
     return (
 
+      //defining paths to card editor and card viewer
+      //lowkey this doesnt work but if i submit the link with /editor
+      //or /viewer after the firebase link, it seems to work fine
+
+      
       <Switch>
-        {/*defining paths to card editor and card viewer*/}
+
+      
+        <Route path="/editor">
+          <CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard}/>
+        </Route>
+
+        <Route  path="/viewer">
+          <CardViewer cards={this.state.cards} />
+        </Route>
+
+       </Switch>
+      
+      
+      
+
+
+        
+        /*
+        <Switch>
         <Route exact path="/editor">
           <CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard}/>
         </Route>
@@ -39,9 +63,10 @@ class App extends React.Component {
         <Route exact path="/viewer">
           <CardViewer cards={this.state.cards} />
         </Route>
+        </Switch>
+        */
         
-
-      </Switch>
+      
       
     );
   }
