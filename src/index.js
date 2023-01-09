@@ -5,16 +5,22 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
 
-import { Provider } from 'react-redux'
-import firebase from 'firebase/compat/app'
-import 'firebase/auth'
-// import 'firebase/firestore' // <- needed if using firestore
-// import 'firebase/functions' // <- needed if using httpsCallable
-import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux';
+import firebase from 'firebase/compat/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/firestore'; // <- needed if using firestore
+import 'firebase/functions' // <- needed if using httpsCallable
+
+import { createStore, combineReducers } from 'redux';
+import { configureStore } from "@reduxjs/toolkit";
+
 import {
   ReactReduxFirebaseProvider,
   firebaseReducer
-} from 'react-redux-firebase'
+} from 'react-redux-firebase';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDPuZ4Sl2MS3UiCON2KNe_kvRSkYd3erqY",
@@ -30,12 +36,12 @@ firebase.initializeApp(firebaseConfig);
 
 // Add firebase to reducers
 const rootReducer = combineReducers({
-  firebase: firebaseReducer
-  // firestore: firestoreReducer // <- needed if using firestore
+  firebase: firebaseReducer,
+  //firestore: firestoreReducer // <- needed if using firestore
 })
 
 // Create store with reducers and initial state
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composeWithDevTools());
 
 // react-redux-firebase config
 const rrfConfig = {
@@ -48,17 +54,17 @@ const rrfProps = {
   firebase,
   config: rrfConfig,
   dispatch: store.dispatch,
-  // createFirestoreInstance // <- needed if using firestore
+  //createFirestoreInstance // <- needed if using firestore
 };
 
 
 ReactDOM.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  </ReactReduxFirebaseProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root'),
 );
