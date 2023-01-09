@@ -9,8 +9,7 @@ const App = () => {
     return (
 
       //defining paths to card editor and card viewer
-      //lowkey this doesnt work but if i submit the link with /editor
-      //or /viewer after the firebase link, it seems to work fine
+      //if invalid url, print "page not found!"
   
       <Switch>
         
