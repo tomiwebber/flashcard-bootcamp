@@ -13,19 +13,19 @@ const App = () => {
       //or /viewer after the firebase link, it seems to work fine
   
       <Switch>
+        
+        <Route exact path="/">
+          <Homepage />
+        </Route>
 
-        <Route path="/editor">
+        <Route exact path="/editor">
           <CardEditor />
         </Route>
 
-        <Route path="/viewer/deck1">
+        <Route exact path="/viewer/:deckId">
           <CardViewer />
         </Route>
 
-        <Route path="/">
-          <Homepage />
-        </Route>
-        
         <Route>
           <div>Page not found!</div>
         </Route>

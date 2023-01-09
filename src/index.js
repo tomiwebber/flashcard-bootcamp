@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import firebase from 'firebase/compat/app';
 import 'firebase/auth';
-import 'firebase/database';
+import 'firebase/compat/database';
 import 'firebase/firestore'; // <- needed if using firestore
 import 'firebase/functions' // <- needed if using httpsCallable
 
@@ -22,6 +22,7 @@ import {
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDPuZ4Sl2MS3UiCON2KNe_kvRSkYd3erqY",
   authDomain: "bootcamp-2f932.firebaseapp.com",
@@ -32,7 +33,10 @@ const firebaseConfig = {
   appId: "1:330008583983:web:4f79f2561b057b00d20bda"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+//firebase.database('https://bootcamp-2f932-default-rtdb.firebaseio.com')
 
 // Add firebase to reducers
 const rootReducer = combineReducers({
